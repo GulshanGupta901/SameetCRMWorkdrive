@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <!-- <script src="https://kit.fontawesome.com/603a9d78d2.js" crossorigin="anonymous"></script> -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <script type="text/javascript" src="https://live.zwidgets.com/js-sdk/1.1/ZohoEmbededAppSDK.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body ondrop="onFileDrop(event);" >
+  <div class="hide-container"></div>
+  <div id="modal-container" class="modal">
+    <div class="center-modal"></div>
+    <i class="fas fa-times fa-sm close" onclick="closePop();" style="color: black;
+    margin-top: 7%;"></i>
+    <iframe class="modal-content" id="thumbnail-img"></iframe>
+    <div id="caption"></div>
+    <div class="redirect-workdrive" data-link="" onclick="goToWorkdrive(this);">
+      Show in Workdrive &nbsp;&nbsp; <i class="fas fa-external-link-alt"></i>
+    </div>
+    <span class="access-all">to access all features</span>
+  </div>
+  <div class="duplicate">
+    <div class="modal-content-dup">
+      <div class="content">
+      </div>
+      <div class="buttons">
+        <button type="button" onclick="duplicateFilePopUp(this);" class="dup-btn" name="cancel">Cancel</button>
+        <button type="button" onclick="duplicateFilePopUp(this);" class="dup-btn" name="separate">Keep Separate</button>
+        <button type="button" onclick="duplicateFilePopUp(this);" class="dup-btn" name="update">Update Existing</button>
+      </div>
+    </div>
+  </div>
+  <div class="message">
+    <p>
+      <i class="message-text"></i>
+    </p>
+  </div>
+  <div class="vw-100 bg-white" style="position: fixed;background-color: black;height: 75px;z-index: 999;">
+  <div class="footer">
+    <!--New Folder Creation-->
+    <div class="new-file">
+      <button class="btn new-file-btn" type="button" onclick="showInputAndButton();">
+        <i class="fas fa-plus fa-2x" style="font-size:20px;"></i><span class="btn-text" >&nbsp;New</span> 
+      </button>
+    </div>
+    <!-- Need to uncomment for delete-->
+    <div class="delete" style="margin-left: 18%;">
+      <button type="button" disabled onclick="deleteFileOrFolder();" class="btn-delete"><i
+          class="fas fa-trash-alt fa-2x del-icon-size" style="background: white;"></i> <span class="btn-text">Delete</span></button>
+    </div>
+    <div class="upload">
+      <button type="button" class="file-upload-btn" onclick="triggerFileUpload();"><i
+          class="fas fa-cloud-upload-alt fa-2x"></i> <span class="btn-text">Upload</span></button>
+      <input id="file-upload" onchange="uploadFile(this);" style="display: none;" type="file" name="upload" multiple>
+    </div>
+    <div class="rename">
+      <button type="button" disabled class="file-rename-btn"><i
+          class="fas fa-rename-alt fa-2x"></i> <span class="btn-text">Rename</span></button>
+    </div>
+    <div class="new-folder">
+      <div class="new-folder-container">
+        <input type="text" name="new-folder-text" autocomplete="off" class="form-control new-folder-input"
+          id="inputText5" placeholder="Enter a folder name"><button class="done-btn" type="button" name="create-folder"
+          onclick="createNewFolder();"><i class="fas fa-check fa-2x"></i></button>
+        <span class="error">Please try a different name. Folder already exists.</span>
+      </div>
+      <button type="button" class="new-folder-btn" onclick="location.reload();"><i
+          class="fa fa-refresh fa-2x icon-size"></i> <span class="btn-text">Refresh</span></button>
+    </div>
+    <div class="download">
+      <button type="button" disabled class="download-btn" onclick="downloadFile();"><i
+          class="fas fa-cloud-download-alt fa-2x"></i> <span class="btn-text">Download</span></button>
+    </div>
+    <div class="clear">
+      <button type="button" class="clear-btn" onclick="location.reload();"><span class="btn-text">Clear
+          Results</span></button>
+    </div>
+    <div class="search">
+      <input type="text" name="search-text" autocomplete="off" class="form-control search-box" id="inputText4"
+        placeholder="Enter file name or folder name"><button type="submit" name="search" class="search-btn"
+        onclick="searchFileOrFolder();"><i class="fas fa-search fa-2x search-icon"></i></button>
+      <span class="error2">No matches found, please try again.</span>
+    </div>
+    <!-- <div class="show-all-files">
+      <button type="submit" name="toggleAllFileView" class="toggle-all-file-view" onclick="toggleAllFileView();">
+          <i class="fa fa-files-o" aria-hidden="true"></i>
+      </button>
+    </div> -->
+    <div class="go-to-workdrive">
+      <button type="submit" name="gotoworkdrive" class="go-to-workdrive-btn" onclick="openWorkdriveFolder();">
+        <img src="../images/WorkDrive-128.png" width="30" height="30" alt="workdrive" class="arrow-icon">
+      </button>
+    </div>
+  </div>
+  <div class="folder-path">
+    <ul class="folder-path-list">
+      <li class="home-icon">
+        <i class="fas fa-home fa-2x" onclick="location.reload();"></i> &nbsp; <span class="colon">:</span>
+      </li>
+    </ul>
+  </div>
+</div>
+  <table class="table table-hover" id="main-table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <div class="custom-control form-control-lg custom-checkbox">
+            <input type="checkbox" class="custom-control-input box" name="header-box" onchange="topClick(this);">
+            <label class="custom-control-label" for="header-box"></label>
+          </div>
+        </th>
+        <th scope="col" class="sortCol" data-sort_name="name">Name</th>
+        <th scope="col">Size</th>
+       <th scope="col">
+       <div class="dropdown">
+          <button scope="col" class="remove_button_css filterCol dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false" data-filter_col="created_by">Created By</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          </div>
+        </div>
+        </th>
+        <th scope="col">
+          <div class="dropdown">
+            <button scope="col" class="remove_button_css filterCol dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false" data-filter_col="modified_by">Last Modified By</button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            </div>
+          </div>
+          </th>
+        <th scope="col" class="sortCol" data-sort_name="created_time">Created Time</th>
+        <th scope="col" class="sortCol" data-sort_name="modified_time">Modified At</th>
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      <script id='fileListing2' type='text/x-handlebars-template'>
+        {{> fileListingPartial}}
+      </script>
+      <script id='fileListing' type='text/x-handlebars-template'>
+        {{#each rows}}
+          <tr>
+
+            <th scope="row">
+              <div class="custom-control form-control-lg custom-checkbox">
+                <input onchange="enableDeleteAndDownload(this);" type="checkbox" class="custom-control-input box" name="{{attributes.name}}" data-id="{{id}}" data-type="{{attributes.type}}" data-url="{{attributes.download_url}}">
+                <label class="custom-control-label" for="{{attributes.name}}"></label>
+              </div>
+            </th>            
+            <td><a href="#" data-folder-id="{{#thumbnailUrl attributes.thumbnail_url}} 0 {{else}} {{id}} {{/thumbnailUrl}}" data-class="{{#thumbnailUrl attributes.thumbnail_url}} img {{else}}folder-img{{/thumbnailUrl}}"
+                title="{{attributes.name}}" data-native-file="{{#nativeZohoFilesUrl attributes.type}} # {{else}} {{attributes.permalink}} {{/nativeZohoFilesUrl}}" data-type="{{attributes.type}}" data-text="{{attributes.name}}" data-img="{{#thumbnailUrl attributes.thumbnail_url}} {{attributes.permalink}} {{else}} https://i.ya-webdesign.com/images/transparent-folders-icon-6.png {{/thumbnailUrl}}"
+                onclick="pop(this);"> {{fileOrFolderIcon attributes.type}} {{shortenName attributes.name}}</a>
+            </td>
+            <td>{{attributes.storage_info.size}}</td>
+             <td>{{attributes.created_by}}</td>
+            <td>{{attributes.modified_by}}</td>
+            <td>{{attributes.created_time}}</td>
+            <td>{{attributes.modified_time}}</td>
+          </tr>
+        {{/each}}
+      </script>
+    </tbody>
+  </table>
+  <div class="loading">
+    <i class="fas fa-redo-alt fa-3x loading-icon"></i>
+  </div>
+
+  <div class="pagination">
+    <div class="left">
+      <button class="left-btn" type="button" name="left-btn" onclick="prevPage();"><i
+          class="fas fa-chevron-circle-left fa-lg left-btn-icon"></i></button>
+    </div>
+    <div class="right">
+      <button class="right-btn" type="button" name="right-btn" onclick="nextPage();"><i
+          class="fas fa-chevron-circle-right fa-lg right-btn-icon"></i></button>
+    </div>
+  </div>
+  <div class="modal fade" id="renameModal" tabindex="-1" role="dialog" aria-labelledby="renameModalLabel" aria-hidden="true" style="background-color: transparent;    box-shadow: 10px 10px 13px 14px;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="height: 250px;">
+        <div id="showIfRenameClick" style="display: none;">
+        <div class="modal-header" >
+          <h5 class="modal-title" id="renameModalLabel">Rename File</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" style="color: black;">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" name="rename-input" class="form-control" id="rename-input">
+        </div>
+      </div>
+      <div id="showIfDeletConfirmatiom" style="display: none;">
+        <div class="modal-header" >
+          <h5 class="modal-title">Do you want to delete these file</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" style="color: black;">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="renameInputdiv">
+          <input type="text" name="rename-input" class="form-control" id="rename-input">
+        </div>
+      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 27%;">Close</button>
+          <button type="button" onclick="triggerFileRename();" id="forSave" class="btn btn-primary" style="width: 27%;" style="display:none">Save Changes</button>
+          <button type="button" onclick="triggerDeleteFileOrFolder();" id="fordelete" class="btn btn-primary" style="width: 27%;" style="display:none">Confirm</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="popup" class="popup">
+    <span id="popup-message"></span>
+  </div>
+</body>
+<footer>
+  <script src="../js/index.js"></script>
+</footer>
+
+</html>

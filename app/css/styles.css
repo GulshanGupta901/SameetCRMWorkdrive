@@ -1,0 +1,671 @@
+body {
+  width: 100%;
+  height:490px;
+  margin-right: 0;
+}
+
+/* Overwrite Bootstrap Styles */
+
+.table {
+  position: absolute;
+  top: 15%;
+  overflow: scroll;
+}
+.table-hover tbody tr:hover {
+  background-color: #f1f3f4;
+}
+.table td, .table th {
+  padding-right: 0;
+  padding-top: 0;  
+}  
+.form-control-lg {
+  padding-right: 0;
+}
+#customCheck1 {
+  padding-top: 3em;
+}
+.table thead th  {
+  padding-top: 0;
+  vertical-align: baseline;
+}
+.table tbody tr td {
+  vertical-align: middle;
+}
+
+/* Folder Path Styling */
+
+.folder-path {
+  position: sticky;
+  width: 95vw;
+  margin-top: 10px;
+}
+
+.folder-path > ul {
+  padding: 0;
+  padding-left: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.folder-path > ul > li {
+  list-style-type: none;
+  padding-left: 0;
+  padding-right: 8px;
+}
+
+.folder-name-text, .arrow, .last-folder-name-text {
+    font-size: 12px;
+}
+
+.folder-name-text:hover {
+  color: #2b7bd0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.last-folder-name-text {
+  color: #2b7bd0;
+  pointer-events: none;
+}
+
+.home-icon {
+  font-size: 7px;
+}
+
+.colon {
+  font-size: 12px;
+}
+
+
+/* Footer Styling */
+
+.footer {
+  width: 100vw;
+  height: 40px;
+  position: sticky;
+}
+.delete, .rename, .upload, .search, .pagination, .show-all-files, .new-folder, .download, .new-file, .clear, .go-to-workdrive {
+position: absolute;
+top: 10%;
+left: 18px;
+width: 250px;
+height: 40px;
+margin-bottom: 0;
+}
+
+.new-file {
+  display: none;
+  z-index: 99999999;
+  width: 10%;
+}
+
+#dropdownMenu2 {
+  width: 80px;
+  height: 45px;
+  font-size: 8px;
+  color: #2b7bd0;
+}
+
+.dropdown-menu, .dropdown-item {
+  z-index: 2;
+}
+
+.dropdown-item:focus {
+  outline: none;
+}
+
+.btn:focus {
+  box-shadow: none;
+}
+
+/* TEMPORARY UNTIL WRITE AND SHEETS API FIXED IN PLATFORM */
+
+#dropdownMenu2 {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* .upload {
+   left: 112px; 
+} */
+
+.new-folder {
+  left: 109px;
+  margin-bottom: 0;
+}
+.download {
+  left: 125px;
+  margin-bottom: 0;
+}
+.delete, .rename, .download {
+  display: none;
+}
+
+.file-upload-btn, .new-folder-btn, .btn-delete, .file-rename-btn, .download-btn, .new-file-btn, .clear-btn {
+  font-size: 8px;
+  color: #2b7bd0;
+  padding: 10px;
+  border: none;
+  background-color: white;
+}
+.btn-text {
+  font-size: 16px;
+  margin-left: 4px;
+}
+.file-upload-btn > i, .new-folder-btn > i, .btn-delete > i, .file-rename-btn > i , .download-btn > i, .new-file-btn > i  {
+  color: #2b7bd0;
+}
+
+.file-upload-btn:hover , .new-folder-btn:hover, .btn-delete > i:hover, .file-rename-btn:hover , .download-btn:hover, .new-file-btn:hover, .clear-btn:hover {
+  background-color: #dcedff;
+  border-radius: 5px;
+}
+
+.file-upload-btn > i:hover , .new-folder-btn > i:hover, .btn-delete > i:hover, .file-rename-btn > i:hover , .download-btn > i:hover, .new-file-btn > i:hover  {
+  color: #2b7bd0;
+}
+
+.file-upload-btn:focus, .btn-delete:focus, .file-rename-btn:focus, .new-folder-btn:focus, .download-btn:focus, .new-btn:focus, .done-btn:focus, .new-file-btn:focus, .clear-btn:focus {
+  outline: none;
+}
+.new-file:focus {
+  color: #2b7bd0;
+}
+
+/* Pagination Buttons */
+
+.pagination {
+  top: 92%;
+  left: 93%;
+  margin-bottom: 0;
+  width: 200px;
+  display: none;
+  position: fixed;
+}
+i {
+  color: #63707e;
+}
+i:hover {
+  color: #007bff;
+  cursor: pointer;
+}
+
+.left-btn , .right-btn {
+  background-color: none;
+  border: none;
+  float: left;
+  margin: 0;
+  padding: 0;
+  margin-right: 7px;
+}
+.left-btn:focus, .right-btn:focus {
+  outline: none;
+}
+
+/* Go To Workdrive Icon Styling */
+
+.go-to-workdrive {
+   left: 94%; 
+  /* left: 97%; */
+  top: 0;
+  bottom: 10px;
+  width: 20px;
+  height: 30px;
+  padding-top: 2px;
+  z-index: 3;
+}
+
+
+.show-all-files {
+  left: 90%; 
+ /* left: 97%; */
+ top: 0;
+ bottom: 10px;
+ height: 30px;
+ padding-top: 2px;
+ z-index: 3;
+}
+
+.go-to-workdrive-btn, .toggle-all-file-view {
+  font-size: 9px;
+  border: none;
+  padding: 0;
+  margin-top: 14px;
+  margin-left: 1px;
+  margin-bottom: 0;
+  position: absolute;
+  top: 0;
+  background-color: white;
+}
+
+.toggle-all-file-view {
+  font-size:24px
+}
+
+.go-to-workdrive-btn:focus, .toggle-all-file-view:focus {
+  outline: none;
+}
+
+.arrow-icon {
+  padding: 0;
+  border-radius: 2px;
+}
+
+.arrow-btn:focus {
+  outline: none;
+}
+
+/* Search Bar Styling */
+
+.clear {
+   left: 57%; 
+  /* left: 71%; */
+  display: none;
+}
+
+.search {
+   left: 66%; 
+  /* left: 77%; */
+  bottom: 10px;
+  width: 430px;
+  height: 50px;
+  padding-top: 2px;
+  z-index: 3;
+}
+#inputText4 {
+  font-size: 14px;
+  margin-left: 35px;
+  margin-top: 0;
+  padding-right: 45px;
+  height: 43px;
+  width: 60%;
+  background-color: white;
+  border-radius: 20px;
+  animation: searchBoxEnter 1s 1;
+}
+@keyframes searchBoxEnter {
+0% {
+  width: 10%;
+  margin-left: 250px;
+}
+100% {
+  width: 60%;
+  margin-left: 35px;
+}
+}
+.btn {
+  font-size: 16px;
+  width: 60%;
+  height: 45px;
+}
+.search-btn {
+  font-size: 9px;
+  border: none;
+  padding: 0;
+  margin-top: 14px;
+  margin-left: 1px;
+  margin-bottom: 0;
+  position: absolute;
+  left: 257px;
+  top: 0;
+  background-color: white;
+}
+
+.search-icon {
+  padding: 0;
+  border-radius: 2px;
+}
+
+.search-btn:focus {
+  outline: none;
+}
+
+/* New Folder Container Styling */
+.new-folder-input {
+  font-size: 14px;
+  width: 205px;
+  height: 40px;
+  position: absolute;
+  padding-right: 35px;
+  left: 135px;
+  top: 3px;
+  border: 2px solid #007bff;
+  border-width: thin;
+}
+.done-btn {
+  background-color: white;
+  position: absolute;
+  left: 312px;
+  top: 12px;
+  text-align: center;
+  padding: 0;
+  font-size: 10px;
+  border: none;
+}
+.done-btn:hover {
+  color: #2b7bd0;
+  border: none;
+  border-radius: 5px;
+}
+.done-btn:focus {
+  background-color: white;
+}
+
+.new-folder-container {
+  display: none;
+  z-index: 3;
+}
+
+/* Folder Name Error Styling */
+
+.error {
+  font-size: 10px;
+  color: red;
+  background-color: white;
+  width: 230px;
+  position: absolute;
+  left: 135px;
+  top: 45px;
+  right: 10%;
+  display: none;
+  z-index: 6;
+}
+.error2 {
+  font-size: 13px;
+  background-color: white;
+  color: red;
+  width: 230px;
+  position: absolute;
+  top: 92%;
+  right: 32%;
+  display: none;
+  z-index: 4;
+}
+.input-error {
+  border: 1px solid red;
+  animation: inputError 0.5s 2;
+  transition: animation 0.5s linear;
+}
+@keyframes inputError {
+0% {
+  right: 24%;
+}
+25% {
+  right: 23%;
+}
+50% {
+  right: 24%;
+}
+100% {
+  right: 23%;
+}
+}
+
+/* Loading Icon Styling */
+
+.loading {
+  position: absolute;
+  display: none;
+  top: 32%;
+  left: 45%;
+}
+.loading-icon {
+  color: #007bff;
+  /* display: none; */
+  animation: rotateLoading 2s infinite;
+  transition: animation 1s linear;
+}
+@keyframes rotateLoading {
+0% {
+  transform: rotate();
+}
+100% {
+  transform: rotate(360deg);
+}
+}
+
+/* No Files message */
+
+.no-files {
+  position: absolute;
+  top: 40%;
+  left: 20%;
+  color: grey;
+  z-index: 3;
+  font-weight: bold;
+}
+
+.active {
+  display: block;
+}
+.inactive {
+  display: none;
+}
+.active-visibility {
+  visibility: visible;
+}
+.inactive-visibility {
+  visibility: hidden;
+}
+
+/* Foreground for approval records and un-authorised extension */
+
+.hide-container {
+  display: none;
+  position: fixed;
+  padding-top: 80px;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(224, 223, 220, 0.89);
+}
+
+/* The Modal background */
+
+.modal , .duplicate, .center-modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 80px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #e4e4e4  ;
+}
+
+.center-modal {
+  display: block;
+  height: 27%;
+  padding-top: 10px;
+  position: absolute;
+  z-index: 2;
+}
+
+/* Modal Content image */
+.modal-content, .modal-content-dup {
+  margin: auto;
+  display: block;
+  width: 100%;
+  max-width: 1000px;
+  height: 500px;
+}
+
+.modal-content-dup {
+  background-color: white;
+  border-radius: 5px;
+  max-width: 500px;
+  height: 200px;
+}
+
+.content {
+  text-align: center;
+  padding-top: 25px;
+  padding-left: 7px;
+}
+
+.buttons {
+  margin-top: 46px;
+  margin-left: 6%;
+}
+
+.dup-btn {
+  background-color: none;
+  font-size: 14px;
+  border-color: #2b7bd0;
+  border-radius: 5px;
+  width: 120px;
+  margin: 10px;
+  padding: 2px;
+}
+
+.dup-btn:hover {
+  background-color: #2b7bd0;
+  color: white;
+}
+
+.dup-btn:focus {
+  outline: none;
+}
+
+/* Caption */
+#caption {
+  position: absolute;
+  top: 23px;
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  color: #ccc;
+  padding: 10px 0;
+  height: 80px;
+  text-align: center;
+}
+
+
+/* Workdrive Redirect Button Styling */
+.redirect-workdrive {
+  z-index: 4;
+  position: absolute;
+  text-align: center;
+  color: #e5dfdf;
+  width: 180px;
+  height: 45px;
+  top: 95px;
+  left: 78%;
+}
+
+.redirect-workdrive:hover {
+  cursor: pointer;
+}
+
+.access-all {
+  z-index: 3;
+  font-size: 10px;
+  font-weight: bold;
+  color: #e5dfdf;
+  margin-top: 0;
+  padding-top: 0;
+  padding-left: 0;
+  position: absolute;
+  top: 116px;
+  left: 80%;
+}
+
+.fa-external-link-alt {
+  color: white;
+}
+
+/* Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  z-index: 2;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+.folder-img {
+  width:60%;
+max-width:270px;
+height:250px;
+}
+
+/* Bring Checkbox forward towards the screen */
+
+.box {
+  z-index: 2;
+}
+
+/* Remove folder icon hover effect */
+
+.fa-folder:hover {
+  color: #63707e;
+}
+
+/* Delete and Upload message */
+
+.message {
+  width: 600px;
+  height: 20px;
+  position: absolute;
+  top: 90%;
+  left: 25px;
+  display: none;
+}
+.message-text {
+  color: #63707e;
+  font-size: 12px;
+  padding-top: 15px;
+  padding-bottom: 0;
+}
+.message-text:hover {
+  color: #63707e;
+  cursor: default;
+}
+
+.remove_button_css { 
+  outline: none;
+  box-sizing: none; 
+  background-color: transparent; 
+}
+.col-form-label{
+  margin-top: 0%;
+}
+.popup {
+  position: fixed;
+  top: 12%;
+  padding: 19px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 368px;
+  text-align: center;
+  border-radius: 10px;
+  color: white;
+  display: none;
+  z-index: 900000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.popup.success {
+  background-color: #28a745; /* Green */
+}
+
+.popup.error {
+  background-color: #dc3545; /* Red */
+}
+.modal-footer{
+  display: inline;
+    margin-left: 19%;
+}
